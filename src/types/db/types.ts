@@ -34,10 +34,11 @@ export type Tree = {
 };
 export type User = {
     id: Generated<string>;
-    prefix: Generated<string>;
-    telNumber: string | null;
-    password: string;
-    nickName: string | null;
+    phone: string;
+    first_name: string;
+    last_name: string;
+    first_name_en: string | null;
+    last_name_en: string | null;
     email: string;
     role: Generated<ROLES>;
 };

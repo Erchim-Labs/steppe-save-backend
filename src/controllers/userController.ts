@@ -20,56 +20,56 @@ export const userController = {
       next(error);
     }
   },
-  login: async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const input = loginSchema.parse(req.body);
+  // login: async (req: Request, res: Response, next: NextFunction) => {
+  //   try {
+  //     const input = loginSchema.parse(req.body);
 
-      const { user, accessToken, refreshToken } = await userService.login(
-        input.email,
-        input.password
-      );
+  //     const { user, accessToken, refreshToken } = await userService.login(
+  //       input.email,
+  //       input.password
+  //     );
 
-      return res.status(200).json({
-        success: true,
-        data: {
-          user: user,
-          tokens: {
-            accessToken,
-            refreshToken,
-          },
-        },
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-  create: async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { prefix, telNumber, password, nickName, email } = req.body;
-      if (!prefix || !telNumber || !password || !email) {
-        throw new CustomError("Missing required fields", 400);
-      }
+  //     return res.status(200).json({
+  //       success: true,
+  //       data: {
+  //         user: user,
+  //         tokens: {
+  //           accessToken,
+  //           refreshToken,
+  //         },
+  //       },
+  //     });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
+  // create: async (req: Request, res: Response, next: NextFunction) => {
+  //   try {
+  //     const { prefix, telNumber, password, nickName, email } = req.body;
+  //     if (!prefix || !telNumber || !password || !email) {
+  //       throw new CustomError("Missing required fields", 400);
+  //     }
 
-      const { user, accessToken, refreshToken } = await userService.create(
-        prefix,
-        telNumber,
-        password,
-        nickName || null,
-        email
-      );
+  //     const { user, accessToken, refreshToken } = await userService.create(
+  //       prefix,
+  //       telNumber,
+  //       password,
+  //       nickName || null,
+  //       email
+  //     );
 
-      return res.status(201).json({
-        success: true,
-        data: {
-          user: user,
-          tokens: {
-            accessToken,
-            refreshToken,
-          },
-        },
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
+  //     return res.status(201).json({
+  //       success: true,
+  //       data: {
+  //         user: user,
+  //         tokens: {
+  //           accessToken,
+  //           refreshToken,
+  //         },
+  //       },
+  //     });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
 };

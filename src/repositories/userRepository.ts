@@ -40,11 +40,11 @@ export const userRepository = {
 
     return user;
   },
-  getByTelNumber: async (phoneNumber: string) => {
+  getByPhone: async (phoneNumber: string) => {
     const user = await db
       .selectFrom("User")
       .selectAll()
-      .where("User.telNumber", "=", phoneNumber)
+      .where("User.phone", "=", phoneNumber)
       .executeTakeFirst();
 
     return user;

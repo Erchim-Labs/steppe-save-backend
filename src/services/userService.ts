@@ -12,56 +12,56 @@ export const userService = {
     }
     return user;
   },
-  login: async (email: string, password: string) => {
-    const user = await userRepository.getByEmail(email);
-    if (!user || !user.password)
-      throw new CustomError(
-        "Oops! We couldn't log you in. Please double-check your email and password and try again.",
-        400
-      );
-    const isValidPassword = await encryptionHelper.compare(
-      password,
-      user.password
-    );
-    if (!isValidPassword)
-      throw new CustomError(
-        "Oops! We couldn't log you in. Please double-check your email and password and try again.",
-        400
-      );
-    const { accessToken, refreshToken } = generateTokens({
-      id: user.id,
-      role: user.role,
-    });
+  // login: async (email: string, password: string) => {
+  //   const user = await userRepository.getByEmail(email);
+  //   if (!user || !user.password)
+  //     throw new CustomError(
+  //       "Oops! We couldn't log you in. Please double-check your email and password and try again.",
+  //       400
+  //     );
+  //   const isValidPassword = await encryptionHelper.compare(
+  //     password,
+  //     user.password
+  //   );
+  //   if (!isValidPassword)
+  //     throw new CustomError(
+  //       "Oops! We couldn't log you in. Please double-check your email and password and try again.",
+  //       400
+  //     );
+  //   const { accessToken, refreshToken } = generateTokens({
+  //     id: user.id,
+  //     role: user.role,
+  //   });
 
-    const sanitizedUser = hideSensitiveData(user, ["password"]);
+  //   const sanitizedUser = hideSensitiveData(user, ["password"]);
 
-    return { user: sanitizedUser, accessToken, refreshToken };
-  },
-  create: async (
-    prefix: string,
-    telNumber: string,
-    password: string,
-    nickName: string | null,
-    email: string
-  ) => {
-    const hasUser = await userRepository.getByEmail(email);
-    if (hasUser)
-      throw new CustomError("User already exists with this email.", 400);
+  //   return { user: sanitizedUser, accessToken, refreshToken };
+  // },
+  // create: async (
+  //   prefix: string,
+  //   telNumber: string,
+  //   password: string,
+  //   nickName: string | null,
+  //   email: string
+  // ) => {
+  //   const hasUser = await userRepository.getByEmail(email);
+  //   if (hasUser)
+  //     throw new CustomError("User already exists with this email.", 400);
 
-    const hashedPassword = await encryptionHelper.encrypt(password);
-    const user = await userRepository.create({
-      prefix,
-      telNumber,
-      password: hashedPassword,
-      nickName,
-      email,
-    });
-    const { accessToken, refreshToken } = generateTokens({
-      id: user.id,
-      role: user.role,
-    });
+  //   const hashedPassword = await encryptionHelper.encrypt(password);
+  //   const user = await userRepository.create({
+  //     prefix,
+  //     telNumber,
+  //     password: hashedPassword,
+  //     nickName,
+  //     email,
+  //   });
+  //   const { accessToken, refreshToken } = generateTokens({
+  //     id: user.id,
+  //     role: user.role,
+  //   });
 
-    const sanitizedUser = hideSensitiveData(user, ["password"]);
-    return { user: sanitizedUser, accessToken, refreshToken };
-  },
+  //   const sanitizedUser = hideSensitiveData(user, ["password"]);
+  //   return { user: sanitizedUser, accessToken, refreshToken };
+  // },
 };
