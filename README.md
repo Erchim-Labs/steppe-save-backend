@@ -1,8 +1,8 @@
-# BoilerPlate with Express TypeScript 2025
+# Steppe-Save-Backend 2025
 
 ## 🌟 Introduction
 
-Welcome to Express TypeScript Boilerplate 2025 – a simple and ready-to-use starting point for building backend web services with Express.js and TypeScript.
+Welcome to Steppe-Save-Backend 2025 – a simple and ready-to-use starting point for building backend web services with Express.js and TypeScript.
 
 ## 🛠️ Getting Started
 
@@ -10,8 +10,8 @@ Welcome to Express TypeScript Boilerplate 2025 – a simple and ready-to-use sta
 
 #### Step 1: 🚀 Initial Setup
 
-- Clone the repository: `git clone https://github.com/dgduksict/typescript-express.git`
-- Navigate: `cd typescript-express`
+- Clone the repository: `git clone https://github.com/dgduksict/steppe-save-backend.git`
+- Navigate: `cd steppe-save-backend`
 - Install dependencies: `npm install`
 
 #### Step 2: ⚙️ Environment Configuration

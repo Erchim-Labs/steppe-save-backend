@@ -22,9 +22,78 @@ model User {
   nickName  String?
   email String  @unique
   role ROLES @default(USER)
+
+  accounts UserAccountInfo[]
+  transactions Transaction[]
+  roundups Roundup[]
+}
+
+model Roundup {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  user_id String
+  title String
+  target_amount Int     @default(0)
+  current_amount Int    @default(0)
+  account_id String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  trees Tree[]
+  user User @relation(fields: [user_id], references: [id])
+  account UserAccountInfo @relation(fields: [account_id], references: [id])
+}
+
+model UserAccountInfo {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  user_id String
+  balance  Float @default(0)
+  account_type String @default("savings")
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  roundups Roundup[]
+}
+
+model Tree {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  roundup_id String
+  name String?
+  growth_percentage Int @default(0)
+  
+  
+  roundup Roundup @relation(fields: [roundup_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+model Transaction {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  from_user_id String
+  amount Float
+  to_user_id String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  from_user User @relation(fields: [from_user_id], references: [id])
 }
 
 enum ROLES {
   ADMIN
   USER
+}
+
+enum GROWTH_STAGES {
+  STAGE_1
+  STAGE_2
+  STAGE_3
+  STAGE_4
+}
+
+enum ACCOUNT_TYPE {
+  LOCKED_TERM
+  FLEXIBLE_TERM
+  AUTO_INVESTMENT_TERM
 }
