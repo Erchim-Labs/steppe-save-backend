@@ -10,7 +10,7 @@ Welcome to Steppe-Save-Backend 2025 – a simple and ready-to-use starting point
 
 #### Step 1: 🚀 Initial Setup
 
-- Clone the repository: `git clone https://github.com/dgduksict/steppe-save-backend.git`
+- Clone the repository: `git clone https://github.com/Erchim-Labs/steppe-save-backend.git`
 - Navigate: `cd steppe-save-backend`
 - Install dependencies: `npm install`
 
