@@ -2,6 +2,8 @@ import { userService } from "../services/userService";
 import { Request, Response, NextFunction } from "express";
 import { idSchema, loginSchema } from "../validations/sharedSchema";
 import { CustomError } from "../exceptions/CustomError";
+import { AuthenticatedRequest } from "../../custom";
+import { db } from "../utils/db";
 
 export const userController = {
   getUserById: async (req: Request, res: Response, next: NextFunction) => {

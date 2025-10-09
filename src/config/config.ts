@@ -24,6 +24,7 @@ const envSchema = z.object({
   ENCRYPTION_ALGORITHM: z.string(),
   ENCRYPTION_SECRET: z.string(),
   ENCRYPTION_IV: z.string(),
+  OPENAI_API_KEY: z.string().optional(),
 });
 
 let env = envSchema.safeParse(process.env);

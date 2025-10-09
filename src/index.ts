@@ -15,7 +15,10 @@ import logger from "./config/winston";
 import { db } from "./utils/db";
 import { startCronJobs } from "./cronjob";
 import { userRoutes } from "./routes/userRoutes";
+import OpenAI from "openai";
+import { aiAssisantRoutes } from "./routes/aiAssistantRoutes";
 
+export const openAiClient = new OpenAI({ apiKey: config.OPENAI_API_KEY });
 // export const redis = new Redis(config.REDIS_CONNECTION_STRING);
 export const cron = require("node-cron");
 
@@ -44,6 +47,7 @@ app.use(
 );
 
 app.use("/api/user", userRoutes);
+app.use("/api/treey", aiAssisantRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
