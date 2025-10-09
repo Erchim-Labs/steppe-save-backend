@@ -28,6 +28,7 @@ model User {
   accounts UserAccountInfo[]
   transactions Transaction[]
   roundups Roundup[]
+  chat_messages ChatMessage[]
 }
 
 model Roundup {
@@ -80,6 +81,18 @@ model Transaction {
   updated_at DateTime @default(now())
 
   from_user User @relation(fields: [from_user_id], references: [id])
+}
+
+model ChatMessage {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  user_id String
+  content String
+  role String
+  parent_id String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
 }
 
 enum ROLES {

@@ -6,6 +6,15 @@ export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 import type { ROLES, GROWTH_STAGES, ACCOUNT_TYPE } from "./enums";
 
+export type ChatMessage = {
+    id: Generated<string>;
+    user_id: string;
+    content: string;
+    role: string;
+    parent_id: string | null;
+    created_at: Generated<Timestamp>;
+    updated_at: Generated<Timestamp>;
+};
 export type Roundup = {
     id: Generated<string>;
     user_id: string;
@@ -51,6 +60,7 @@ export type UserAccountInfo = {
     updated_at: Generated<Timestamp>;
 };
 export type DB = {
+    ChatMessage: ChatMessage;
     Roundup: Roundup;
     Transaction: Transaction;
     Tree: Tree;
