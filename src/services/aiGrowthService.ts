@@ -21,9 +21,15 @@ export const aiGrowthService = {
         - Goal: ₮${userData.roundupGoal}
         - Weekly average: ₮${userData.avgWeekly}
         - Weeks remaining: ${userData.weeksRemaining}
+        - Username: Team 2
 
         Answer concisely and positively.
-        User asked: "${message}"
+        User asked: "${message}".
+        
+        Respond as Treey 🌳 with warmth and motivation.
+      - Give concise yet insightful advice
+      - Suggest practical actions if needed
+      - Use positive and encouraging tone
         `;
 
     const response = await openAiClient.chat.completions.create({
