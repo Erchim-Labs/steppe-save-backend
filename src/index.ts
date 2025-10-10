@@ -32,7 +32,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(
   cors({
-    origin: ["https://steppe-save.vercel.app", config.FRONTEND_URL],
+    origin: ["https://steppe-save.vercel.app"],
     credentials: true,
   })
 );
